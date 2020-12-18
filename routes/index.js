@@ -14,4 +14,15 @@ router.post('/', function(req,res, next) {
 	res.redirect('/');
 });
 
+// routing index to other pages
+router.get('/register', function (req, res) {
+	res.render('register',{
+		title: 'HELLO'
+	});  });
+
+
+router.get('/joinpool', function (req, res) {
+	res.render('joinpool',{
+		title: 'HELLO'
+	});  });
 module.exports = router;
