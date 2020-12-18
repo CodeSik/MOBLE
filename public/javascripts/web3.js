@@ -1,7 +1,7 @@
 var web3 = new Web3();
 web3.setProvider(new Web3.providers.HttpProvider('http://localhost:8545'));
 
-const contract_address = "0x67fbF067dE55F9187b009d5edfd5936D4582d64C";
+const contract_address = "0x78D712dE5E83A59Aa31c2ef213F22296a64b7882";
 const abi =[
 	{
 		"constant": false,
@@ -475,10 +475,11 @@ var getClosedAuctionItems = async function() {
 	var ClosedItemInfo = await contract.methods.getRegisteredGroupByItems().call({from:address});
 	var user = await contract.methods.getUser().call({from:address}); // 2번에 아이템 목록 들어있음.
 	var itemnumber = 0
+	var existItem = []
 	for(var i =0; i< user[1].length ; i++)
 	{
 		itemnumber = user[1][i];
-
+		existItem.push(itemnumber)
 		for(var k=0 ; k< ClosedItemInfo.length ; k++)
 		{
 			if(ClosedItemInfo[k][0] == itemnumber){
