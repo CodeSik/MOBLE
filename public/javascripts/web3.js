@@ -351,6 +351,7 @@ var startDapp = async function() {
    getMyItems();
    getRegisteredGroupByItems();
    getName();
+   getGroupByItemsToBeRegister();
 }
 
 
@@ -389,11 +390,7 @@ var registerGroupBuyItem = async function() {
 	var price = await document.getElementById('item_price').value;
 	var _peopleNumber = await document.getElementById('max_Ppl').value;
 	var dueDate = await document.getElementById('Date').value;
-	alert(address)
-	alert(items)
-	alert(price)
-	alert(_peopleNumber)
-	alert(dueDate)
+
 	try{
 	   await contract.methods.registerGroupBuyItem(items,_peopleNumber,price,dueDate,"home").send({from:address, gas:5000000, value:price*Math.pow(10,18)});
 	}
@@ -405,15 +402,44 @@ var registerGroupBuyItem = async function() {
 var actionGroupBy = async function() {
    var address = await $('#address').text();
    var item = await document.getElementById('auction-category').value;
-
-   var price = await document.getElementById('bidPrice').value;
+   item = String(item).split('/'); //item[0]에 number들어감
+   var home_address = await document.getElementById('home_address').value;
+   var item2 = item[2].split(' ');
+   var price = item2[0]
    try{
-      await contract.methods.actionGroupBy(item,"home", price).send({from:address,gas:5000000, value:2*Math.pow(10,18)});
+      await contract.methods.actionGroupBy(item[1],home_address, item[0]).send({from:address,gas:5000000, value:price*Math.pow(10,18)});
    }
    catch(err){
       alert(err);
    }
 }
+
+var getGroupByItemsToBeRegister = async function() {
+	var address = await $('#address').text();
+	var GroupByItemInfo = await contract.methods.getRegisteredGroupByItems().call({from:address});
+	for(var i=0 ; i<GroupByItemInfo.length ; i++)
+	{
+		if(GroupByItemInfo[i][9] == true){
+			continue;
+		}
+		var option_value = GroupByItemInfo[i][0];
+		option_value += "/";
+		option_value += GroupByItemInfo[i][1];
+		option_value += "/";
+		option_value += GroupByItemInfo[i][5];
+		option_value += " 이더";
+
+		var option_text = GroupByItemInfo[i][0];
+		option_text += "/" ;
+		option_text += GroupByItemInfo[i][1];
+		option_text += "/" ;
+		option_text += GroupByItemInfo[i][5];
+		option_text += " 이더" ;
+
+		$('#auction-category').append('<option value="'+ option_value +'">'+ option_text +'</option>');
+	}
+ }
+
 //ok
 var getMyItems = async function() {
    var address = await $('#address').text();

@@ -24,6 +24,7 @@
     <div class="row gtr-200">
       <div class="row gtr-200">
         <div class ="col-6 col-12-medium">
+          <h6>나의 주소  :  <a id="address"><%= address %></a></h6>
           <h3>등록된 공고 목록</h3>
           <div class="table-wrapper">
             <table>
@@ -44,7 +45,7 @@
         </div>
 
         <div class ="col-6 col-12-medium">
-          <h2>Auction bidding</h2>
+          <h2>참여할 공동구매</h2>
           <form method="get" action="#">
             <div class="row gtr-uniform">
               <div class="col-12">
@@ -52,13 +53,12 @@
                 </select>
               </div>
               <div class="col-6 col-12-xsmall">
-                <h4>bid price : </h4>
-                <input type="text" name="bidPrice" id="bidPrice" value="" placeholder="price" />
+                <h4>주소 입력 : </h4>
+                <input type="text" name="home_address" id="home_address" value="" placeholder="price" />
               </div>
               <div class="col-12">
                 <ul class="actions">
-                  <li><input type="submit" value="Bid" class="primary" onclick="auctionBidding()"/></li>
-                  <li><input type="reset" value="Reset" /></li>
+                  <li><input type="submit" value="신청하기" class="primary" onclick="actionGroupBy()"/></li>
                 </ul>
               </div>
             </div>
