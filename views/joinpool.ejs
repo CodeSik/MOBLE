@@ -2,7 +2,11 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="/stylesheets/style2.css" />
+  
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+  <script src="/javascripts/web3.js"></script>
 </head>
 
 <body>
@@ -17,92 +21,49 @@
   <div class="wrapper">
     <!-- LIST SECTION -->
     <h1 class='title' height: 100px;>List</h1><span></span>
-    <div class="container">
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
+    <div class="row gtr-200">
+      <div class="row gtr-200">
+        <div class ="col-6 col-12-medium">
+          <h3>등록된 공고 목록</h3>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>공고 번호</th>
+                  <th>아이템 이름</th>
+                  <th>모인 인원</th>
+                  <th>최대 인원</th>
+                  <th>공고 게시자</th>
+                  <th>가격</th>
+                </tr>
+              </thead>
+              <tbody id="registeredCars">
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
+
+        <div class ="col-6 col-12-medium">
+          <h2>Auction bidding</h2>
+          <form method="get" action="#">
+            <div class="row gtr-uniform">
+              <div class="col-12">
+                <select name="demo-category" id="auction-category">
+                </select>
+              </div>
+              <div class="col-6 col-12-xsmall">
+                <h4>bid price : </h4>
+                <input type="text" name="bidPrice" id="bidPrice" value="" placeholder="price" />
+              </div>
+              <div class="col-12">
+                <ul class="actions">
+                  <li><input type="submit" value="Bid" class="primary" onclick="auctionBidding()"/></li>
+                  <li><input type="reset" value="Reset" /></li>
+                </ul>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
-        </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
-        </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
-        </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
-        </div>
-        <div class="blog-image"></div>
-      </div>
-      <div class="blog-item">
-        <div class="blog-content">
-          <h5>Feb. 2017</h5>
-          <h3>This is the Headline of this News</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            dolore magna aliquyam erat, sed diam voluptua.
-          </p>
-          <a href="" \>Mehr erfahren</a>
-        </div>
-        <div class="blog-image"></div>
-      </div>
-    </div>
   </div>
 </body>
 
