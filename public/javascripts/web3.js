@@ -349,7 +349,6 @@ $(document).ready(function() {
 
 var startDapp = async function() {
    getMyItems();
-
    getRegisteredGroupByItems();
    getClosedAuctionItems();
    getMyItemsToBeAuctioned();
