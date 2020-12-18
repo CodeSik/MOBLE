@@ -28,88 +28,43 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/util.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 <!--===============================================================================================-->
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+	<script src="/javascripts/web3.js"></script>
 </head>
 <body>
-
-
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form">
 				<span class="contact100-form-title">
 					물품 등록
 				</span>
-
+				<h6>나의 주소  :  <a id="address"><%= address %></a></h6>
 				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Item Name">
 					<span class="label-input100">아이템 이름 *</span>
-					<input class="input100" type="text" name="item_Name" placeholder="Enter Item Name">
+					<input class="input100" type="text" id="item_Name" name="item_Name" placeholder="Enter Item Name">
 				</div>
 
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter maximum people">
 					<span class="label-input100">최대 인원 *</span>
-					<input class="input100" type="text" name="max_Ppl" placeholder="Enter maximum people ">
+					<input class="input100" type="text" id="max_Ppl" name="max_Ppl" placeholder="Enter maximum people ">
 				</div>
 
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">기한 *</span>
-					<input class="input100" type="text" name="Date" placeholder="Enter Dead Line">
+					<input class="input100" type="text" id="Date" name="Date" placeholder="Enter Dead Line">
 				</div>
 
 				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Item Name">
 					<span class="label-input100">가격 *</span>
-					<input class="input100" type="text" name="item_price" placeholder="Enter Item Price">
-				</div>
-
-				<div class="w-full dis-none js-show-service">
-					<div class="wrap-contact100-form-radio">
-						<span class="label-input100">What type of products do you sell?</span>
-
-						<div class="contact100-form-radio m-t-15">
-							<input class="input-radio100" id="radio1" type="radio" name="type-product" value="physical" checked="checked">
-							<label class="label-radio100" for="radio1">
-								Phycical Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio2" type="radio" name="type-product" value="digital">
-							<label class="label-radio100" for="radio2">
-								Digital Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio3" type="radio" name="type-product" value="service">
-							<label class="label-radio100" for="radio3">
-								Services Consulting
-							</label>
-						</div>
-					</div>
-
-					<div class="wrap-contact100-form-range">
-						<span class="label-input100">가격 *</span>
-
-						<div class="contact100-form-range-value">
-							$<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-							<input type="text" name="from-value">
-							<input type="text" name="to-value">
-						</div>
-
-						<div class="contact100-form-range-bar">
-							<div id="filter-bar"></div>
-						</div>
-					</div>
+					<input class="input100" type="text" id="item_price" name="item_price" placeholder="Enter Item Price">
 				</div>
 
 
 
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						<span>
-							Submit
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-						</span>
-					</button>
-				</div>
+				<form method="post" action="#">
+					<button type="submit" class="primary" onclick="registerGroupBuyItem()">등록</button>
+				</form>
 			</form>
 		</div>
 	</div>

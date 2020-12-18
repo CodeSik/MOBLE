@@ -350,9 +350,6 @@ $(document).ready(function() {
 var startDapp = async function() {
    getMyItems();
    getRegisteredGroupByItems();
-   getClosedAuctionItems();
-   getMyItemsToBeAuctioned();
-   getItemsRegisteredAtAuction();
    getName();
 }
 
@@ -387,12 +384,16 @@ var registerName = async function() {
 }
 //ok
 var registerGroupBuyItem = async function() {
-	await document.getElementById('change_name').value;
 	var address = await $('#address').text();
-	var items = await document.getElementById('myitems-category').value;
-	var price = await document.getElementById('startingBidPrice').value;
-	var _peopleNumber = await document.getElementById('upperLimitPrice').value;
-	var dueDate = await document.getElementById('dueDate').value;
+	var items = await document.getElementById('item_Name').value;
+	var price = await document.getElementById('item_price').value;
+	var _peopleNumber = await document.getElementById('max_Ppl').value;
+	var dueDate = await document.getElementById('Date').value;
+	alert(address)
+	alert(items)
+	alert(price)
+	alert(_peopleNumber)
+	alert(dueDate)
 	try{
 	   await contract.methods.registerGroupBuyItem(items,_peopleNumber,price,dueDate,"home").send({from:address, gas:5000000, value:price*Math.pow(10,18)});
 	}
@@ -456,26 +457,3 @@ var getAllEndedGroupByItems = async function() {
    }
 }
 
-//ok
-var getItemsRegisteredAtAuction = async function() {
-   var address = await $('#address').text();
-   var AuctionItemInfo = await contract.methods.getAllAuctionedItems().call({from:address});
-   for(var i=0 ; i<AuctionItemInfo.length ; i++)
-   {
-      if(AuctionItemInfo[i][7] == true){
-         continue;
-      }
-      var option_value = AuctionItemInfo[i][1];
-      option_value += "/";
-      option_value += AuctionItemInfo[i][5];
-    option_value += AuctionItemInfo[i][10].length;
-
-      var option_text = AuctionItemInfo[i][1];
-      option_text += "/" ;
-      option_text += AuctionItemInfo[i][5];
-      // number of participants
-      option_text += AuctionItemInfo[i][10].length;
-
-      $('#auction-category').append('<option value="'+ option_value +'">'+ option_text +'</option>');
-   }
-}
