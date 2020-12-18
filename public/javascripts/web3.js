@@ -352,6 +352,7 @@ var startDapp = async function() {
    getRegisteredGroupByItems();
    getName();
    getGroupByItemsToBeRegister();
+   getClosedAuctionItems();
 }
 
 
@@ -457,7 +458,7 @@ var getRegisteredGroupByItems = async function() {
 		   continue;
 	   }
 	   var rowItem = "<tr>"
-	   for(var j=0 ; j<GroupByItemInfo[i].length-6; j++){
+	   for(var j=0 ; j<GroupByItemInfo[i].length-5; j++){
 		   var element = GroupByItemInfo[i][j];
 		   rowItem += "<th>"+element+"</th>";
 	   }
@@ -469,17 +470,29 @@ var getRegisteredGroupByItems = async function() {
 
 
 
-//ok
-var getAllEndedGroupByItems = async function() {
-   var address = await $('#address').text();
-   var ClosedItemInfo = await contract.methods.getAllEndedGroupBuyItems().call({from:address});
-   for(var i =0; i<ClosedItemInfo.length ; i++)
-   {
-      var rowItem = "<tr>"
-      rowItem += "<th>" + rowItem[i][1] + "</th>";
-      rowItem += "<th>" + rowItem[i][5] + "</th>";
-      rowItem += "</tr>"
-      $('#carsOnSale').append(rowItem)
-   }
+var getClosedAuctionItems = async function() {
+	var address = await $('#address').text();
+	var ClosedItemInfo = await contract.methods.getRegisteredGroupByItems().call({from:address});
+	var user = await contract.methods.getUser().call({from:address}); // 2번에 아이템 목록 들어있음.
+	var itemnumber = 0
+	for(var i =0; i< user[1].length ; i++)
+	{
+		itemnumber = user[1][i];
+
+		for(var k=0 ; k< ClosedItemInfo.length ; k++)
+		{
+			if(ClosedItemInfo[k][0] == itemnumber){
+				var rowItem = "<tr>"
+	   			for(var j=0 ; j<ClosedItemInfo[k].length-6; j++){
+		 		  var element = ClosedItemInfo[k][j];
+		 		  rowItem += "<th>"+element+"</th>";
+	  			 }
+	  	 		rowItem += "</tr>"
+				$('#carsOnSale').append(rowItem)
+				break;
+			}
+		}
+
+	}
 }
 
